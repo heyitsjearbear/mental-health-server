@@ -4,16 +4,16 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 exports.signup = async (req, res) => {
-  const { username, password } = req.body;
-  const user = new User({ username, password });
+  const { email, password } = req.body;
+  const user = new User({ email, password });
   await user.save();
   res.status(201).send("User registered successfully");
 };
 
 exports.signin = async (req, res, next) => {
   try {
-    const { username, password } = req.body;
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
     if (!user) return res.status(400).send("User not found");
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).send("Invalid credentials");
