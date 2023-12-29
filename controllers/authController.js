@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 exports.signup = async (req, res, next) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   try {
-    const user = new User({ username, password });
+    const user = new User({ email, password });
     await user.save();
 
     // Generate JWT token
