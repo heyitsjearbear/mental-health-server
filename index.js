@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/authRoutes");
+const journalRoutes = require("./routes/journalRoutes");
 require("dotenv").config();
 const cors = require("cors");
 const app = express();
@@ -16,6 +17,7 @@ mongoose
   .catch((err) => console.error("Could not connect to MongoDB", err));
 
 app.use("/api/", authRoutes);
+app.use("/api/", journalRoutes);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
