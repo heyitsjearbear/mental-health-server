@@ -14,7 +14,7 @@ exports.signup = async (req, res, next) => {
       expiresIn: "1h",
     });
 
-    res.status(201).json({ token });
+    res.status(201).json({ token, userId: user._id });
   } catch (err) {
     next(err);
   }
@@ -34,7 +34,7 @@ exports.signin = async (req, res, next) => {
       expiresIn: "1h",
     });
 
-    res.status(200).send({ token });
+    res.status(200).send({ token, userId: user._id });
   } catch (err) {
     next(err);
   }
